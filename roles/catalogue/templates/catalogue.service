@@ -1,5 +1,5 @@
 [Unit]
-Description = Catalogue Service
+Description = User Service
 
 [Service]
 User=roboshop

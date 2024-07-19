@@ -1,27 +1,32 @@
-NODEJS() {
-  PRINT Disable NodeJS Default Version    
-  dnf module disable nodejs -y &>>$LOG_FILE 
-  STAT $?
+- name: Disable NodeJS Default Version    
+  ansible.builtin.shell: dnf module disable nodejs -y  
 
 
-  PRINT Enable NodeJs 20 Version 
-  dnf module enable nodejs:20 -y &>>$LOG_FILE   
-  STAT $?
+- name: Enable NodeJs 20 Version 
+  ansible.builtin.shell: dnf module enable nodejs:20 -y 
+
+- name: Install Nodejs
+  ansible.builtin.dnf:
+    name: nodejs
+    state: latest     
+
+- name: Setup App Prerequisites
+  ansible.builtin.include_role: 
+    name: common
+    tasks_from: app-prereq
 
 
-  PRINT Installing Nginx
-  dnf install nodejs -y &>>$LOG_FILE   
-  STAT $?  
+- name: Download NodeJS Dependencies
+  ansible.builtin.shell: npm install 
+  args: 
+    chdir: "{{ app_path }}"  
+  
+- name: Load schema
+  ansible.builtin.include_role: 
+    name: common
+    tasks_from: schema
 
-
- 
-     
-  APP_PREREQ
-
-  PRINT Download  NodeJS dependencies
-  npm install &>>$LOG_FILE   
-  STAT $? 
-    
-  SYSTEMD_SETUP
-  SCHEMA_SETUP  
-}
+- name: systemd setup
+  ansible.builtin.include_role: 
+    name: common
+    tasks_from: systemd

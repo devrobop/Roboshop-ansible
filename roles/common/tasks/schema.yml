@@ -9,4 +9,4 @@
     state: latest
 
 - name: Load master data
-  ansible.builtin.shell: mongosh --host 172.31.82.244 <app/db/master-data.js     
+  ansible.builtin.shell: mongosh --host mongo.dev.devrobo.online <app/db/master-data.js     

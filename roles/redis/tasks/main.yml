@@ -12,17 +12,17 @@
     state: latest
 
 
-- name: Updating Config file - update Listen address
+- name: Redis config file - update Listen address
   ansible.builtin.replace:
     path: /etc/redis/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
-- name: Updating Config file - update protect mode
+- name: Redis config file - update Protect mode
   ansible.builtin.lineinfile:
     path: /etc/redis/redis.conf
     regexp: 'protected-mode'
-    replace: 'protected-mode no'
+    line: protected-mode no
 
 
 - name: Start Redis Service

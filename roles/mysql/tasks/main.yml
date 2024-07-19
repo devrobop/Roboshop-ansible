@@ -1,5 +1,5 @@
 - name: Install mysql server
-  ansible.builtin.dnf
+  ansible.builtin.dnf:
     name: mysql-server
 
 

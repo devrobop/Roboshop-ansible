@@ -4,7 +4,7 @@
     name: maven  
  
 - name: Setup App Prerequisites
-  ansible.builtin.include_roles:
+  ansible.builtin.include_role:
     name: common
     tasks_from: app-prereq
 
@@ -14,12 +14,12 @@
     chdir:"{{ app_path }}" 
 
 - name: load schema
-   ansible.builtin.include_roles:
+   ansible.builtin.include_role:
     name: common
     tasks_from: schema 
   when: schema setup is defined
 
 - name: SystemD setup
-  ansible.builtin.include_roles:
+  ansible.builtin.include_role:
     name: common
     tasks_from: systemd

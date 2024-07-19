@@ -1,5 +1,5 @@
 - name: Copy Service file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: "{{ component }}.service"
     dest: etc/systemd/system/{{ component }}.service
 
@@ -10,4 +10,4 @@
     enabled: true
     daemon-reload: true
 
-    
+

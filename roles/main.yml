@@ -1,0 +1,6 @@
+- name: Roboshop Project Playbook
+  hosts: all
+  become: true
+  roles: 
+    - "{{ role_name}}"
+    

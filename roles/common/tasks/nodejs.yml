@@ -1,0 +1,27 @@
+NODEJS() {
+  PRINT Disable NodeJS Default Version    
+  dnf module disable nodejs -y &>>$LOG_FILE 
+  STAT $?
+
+
+  PRINT Enable NodeJs 20 Version 
+  dnf module enable nodejs:20 -y &>>$LOG_FILE   
+  STAT $?
+
+
+  PRINT Installing Nginx
+  dnf install nodejs -y &>>$LOG_FILE   
+  STAT $?  
+
+
+ 
+     
+  APP_PREREQ
+
+  PRINT Download  NodeJS dependencies
+  npm install &>>$LOG_FILE   
+  STAT $? 
+    
+  SYSTEMD_SETUP
+  SCHEMA_SETUP  
+}

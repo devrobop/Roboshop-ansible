@@ -22,8 +22,8 @@
     - name: Install mysql Client
       ansible.builtin.dnf:
         name: mysql 
-        state: latest
+        state: latest 
 
-    - name: Load master data
+    - name: Load Master data
       ansible.builtin.shell: mysql -h mysql.{{ env }}.devrobo.online -uroot -pRoboShop@1 < /app/db/{{ item }}.sql
       loop: "{{schema_file}}"

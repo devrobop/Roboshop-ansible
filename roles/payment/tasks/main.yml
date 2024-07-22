@@ -1,5 +1,5 @@
-- name: Setup Python Service 
+- name: Setup python Service 
   ansible.builtin.inculude_role:
     name: common
-    tasks from: python 
+    tasks_from: python 
 

@@ -1,0 +1,15 @@
+- name: Installing python 
+  ansible.builtin.inculude_role:
+    name: common
+    tasks from:  python 
+
+
+APP_PREREQ
+    
+- name: Installing requirements
+cd /app 
+pip3 install -r requirements.txt 
+
+
+SYSTEMD_SETUP
+

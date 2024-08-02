@@ -6,4 +6,6 @@ schema_file:
   - master-data
   - app-user
 
+secrets: "{{ lookup{'hashi_vault', 'secret=roboshop-{{env}}/data/shipping token={{vault_token}} url=https://vault-internal.devrobo.online:8200 validate_certs=false'}}}"
+
   

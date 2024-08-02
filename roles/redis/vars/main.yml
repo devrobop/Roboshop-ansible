@@ -1,1 +1,3 @@
 component: redis
+
+secrets: "{{ lookup{'hashi_vault', 'secret=roboshop-{{env}}/data/redis token={{vault_token}} url=https://vault-internal.devrobo.online:8200 validate_certs=false'}}}"

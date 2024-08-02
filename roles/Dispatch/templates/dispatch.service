@@ -1,12 +1,12 @@
 [Unit]
-Description = User Service
+Description = Dispatch Service
 [Service]
 User=roboshop
-Environment=MONGO=true
-Environment=REDIS_URL='redis://{{ env }}.dev.devrobo.online:6379'
-Environment=MONGO_URL="mongodb://{{ env }}.dev.devrobo.online:27017/users"
-ExecStart=/bin/node /app/server.js
-SyslogIdentifier=user
+Environment=AMQP_HOST={{ secrets.AMQP_HOST}}
+Environment=AMQP_USER={{ secrets.AMQP_USER}}
+Environment=AMQP_PASS={{ secrets.AMQP_PASS}}
+ExecStart=/app/dispatch
+SyslogIdentifier=dispatch
 
 [Install]
 WantedBy=multi-user.target

@@ -1,8 +1,6 @@
 - name: Roboshop Project Playbook
   hosts: all
   become: true
-  vars: 
-    domain: devrobo.online
   roles: 
     - "{{ role_name }}"
     

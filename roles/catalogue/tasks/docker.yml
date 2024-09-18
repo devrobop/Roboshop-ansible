@@ -1,0 +1,34 @@
+- name: Run Catalogue Container
+  containers.podman.podman_container:
+    name: catalogue
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
+    state: started
+    ports: 
+      - "8080:8080"
+    env: 
+      MONGO: "{{ secrets.MONGO }}"
+      MONGO_URL: "{{ secrets.MONGO_URL }}"
+    
+
+
+# - name: Load Master Data - Container
+#   containers.podman.podman_container:
+#     name: Master Data
+#     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+#     state: started
+#     env: 
+#       DB_TYPE: "mongo"
+#       APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/catalogue"
+#       DB_HOST: "mongo.{{env}}.{{domain_name}}"
+#       SCHEMA_FILE: "db/master-data.js"
+
+- name: Load Master Data - Container
+  containers.podman.podman_container:
+    name: master-data
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    state: started
+    env:
+      DB_TYPE: "{{ secrets.DB_TYPE }}"
+      APP_GIT_URL: "{{ secrets.APP_GIT_URL }}"
+      DB_HOST: "{{ secrets.DB_HOST }}"
+      SCHEMA_FILE: "{{ secrets.SCHEMA_FILE }}"
